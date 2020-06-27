@@ -1,5 +1,5 @@
 {
 	"version": 2,
 	"regions": ["sfo1"],
-	"routes": [{ "src": "/test2", "dest": "example.com" }]
+	"routes": [{ "src": "/test2", "dest": "https://example.com/" }]
 }

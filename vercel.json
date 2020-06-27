@@ -1,5 +1,5 @@
 {
 	"version": 2,
 	"regions": ["sfo1"],
-	"routes": [{ "src": "/(?<id>[^/]*)", "dest": "/api/links/$id" }]
+	"routes": [{ "src": "/(?<slug>[^/]+)", "dest": "/api/links/$slug" }]
 }

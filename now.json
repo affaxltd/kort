@@ -1,5 +1,5 @@
 {
 	"version": 2,
 	"regions": ["sfo1"],
-	"routes": [{ "src": "/test3", "dest": "/app/dashboard" }]
+	"rewrites": [{ "source": "/:link", "destination": "/api/links" }]
 }

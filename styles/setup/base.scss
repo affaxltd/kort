@@ -1,0 +1,9 @@
+body,
+#__next {
+	@apply bg-gray-100;
+	min-height: 100vh;
+}
+
+* {
+	@apply transition ease-in-out duration-150;
+}

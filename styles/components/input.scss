@@ -1,0 +1,25 @@
+$border-size: 1px;
+
+[class*="input-focused"] {
+	font-family: "Inter Var";
+}
+
+.input-focused-normal {
+	box-shadow: 0px 0px 0px $border-size theme("colors.gray.300");
+}
+
+.input-focused-gray {
+	box-shadow: 0px 0px 0px $border-size theme("colors.gray.800");
+}
+
+.input-focused-green {
+	box-shadow: 0px 0px 0px $border-size theme("colors.green.400");
+}
+
+.input-focused-indigo {
+	box-shadow: 0px 0px 0px $border-size theme("colors.indigo.600");
+}
+
+.input-focused-red {
+	box-shadow: 0px 0px 0px $border-size theme("colors.red.500");
+}

@@ -1,0 +1,17 @@
+// Base Tailwind Setup
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+// Custom Setup
+@import "setup/base";
+@import "fonts/inter";
+
+// Finalize Tailwind Setup
+@import "tailwindcss/utilities";
+
+// Custom Style
+@import "components/loader";
+@import "components/transitions";
+@import "components/input";
+@import "components/spinner";

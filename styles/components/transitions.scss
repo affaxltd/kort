@@ -1,0 +1,35 @@
+.loader-transition-enter {
+	opacity: 0;
+}
+
+.loader-transition-enter-active {
+	opacity: 1;
+	transition: opacity 500ms;
+}
+
+.loader-transition-exit {
+	opacity: 1;
+}
+
+.loader-transition-exit-active {
+	opacity: 0;
+	transition: opacity 500ms;
+}
+
+.general-transition-enter {
+	opacity: 0;
+}
+
+.general-transition-enter-active {
+	opacity: 1;
+	transition: opacity 200ms;
+}
+
+.general-transition-exit {
+	opacity: 1;
+}
+
+.general-transition-exit-active {
+	opacity: 0;
+	transition: opacity 200ms;
+}

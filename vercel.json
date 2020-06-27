@@ -1,5 +1,0 @@
-{
-	"version": 2,
-	"regions": ["sfo1"],
-	"rewrites": [{ "source": "/test", "destination": "example.com" }]
-}

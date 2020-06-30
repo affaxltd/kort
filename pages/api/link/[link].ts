@@ -1,6 +1,7 @@
 import { NowRequest, NowResponse } from "@vercel/node";
 import { connect } from "../tools/_mongodb";
 import { sanitize } from "../tools/_sanitizer";
+import { Link } from "../../../types/_link";
 
 connect();
 
@@ -31,13 +32,24 @@ export default async (req: NowRequest, res: NowResponse) => {
 			return redirect("/error/500");
 		}
 
-		const dbLink = await db
+		const dbLink: Link | null = await db
 			.collection("links")
 			.findOne({ slug: sanitizedLink });
 
 		if (!dbLink || !dbLink.target) {
 			return redirect("/error/404");
 		} else {
+			try {
+				await db
+					.collection("links")
+					.findOneAndUpdate(
+						{ slug: sanitizedLink },
+						{ $inc: { clicks: 1 } }
+					);
+			} catch (e) {
+				console.log(e);
+			}
+
 			return redirect(dbLink.target);
 		}
 	} catch (e) {

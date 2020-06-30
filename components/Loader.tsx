@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import c from "classnames";
 import { CSSTransition } from "react-transition-group";
 
-const WihLoadingComponent = ({
+const Loader = ({
 	isLoading,
 	full,
 	children,
@@ -43,4 +43,4 @@ const WihLoadingComponent = ({
 	);
 };
 
-export default WihLoadingComponent;
+export default Loader;

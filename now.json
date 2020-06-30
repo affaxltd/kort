@@ -1,5 +1,5 @@
 {
 	"version": 2,
 	"regions": ["sfo1"],
-	"rewrites": [{ "source": "/:link", "destination": "/api/links/$link" }]
+	"rewrites": [{ "source": "/:link", "destination": "/api/link/$link" }]
 }

@@ -5,6 +5,8 @@ import { Db } from "mongodb";
 export type Link = {
 	slug: string;
 	target: string;
+	clicks: number;
+	created: number;
 };
 
 export type LinkBody = {

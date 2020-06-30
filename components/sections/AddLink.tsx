@@ -1,13 +1,13 @@
-import { useState, Fragment, useContext } from "react";
+import { useState, useContext, Fragment } from "react";
 import Input from "../../components/primitives/Input";
 import Button from "../../components/primitives/Button";
 import { CSSTransition } from "react-transition-group";
 import Spinner from "../../components/primitives/Spinner";
 import validator from "validator";
-import { requestLinkApi } from "../utils/linkUtil";
+import { requestLinkApi } from "../../lib/linkLib";
 import AlertContext from "../../context/AlertContext";
 
-const AddLink = () => {
+const AddLink = ({ refresh }: { refresh: () => void }) => {
 	const [slugText, setSlugState] = useState("");
 	const [targetText, setTargetState] = useState("");
 	const [slugErrorText, setSlugErrorTextState] = useState("");
@@ -15,7 +15,7 @@ const AddLink = () => {
 	const [adding, setAddingState] = useState(false);
 	const [slugError, setSlugErrorState] = useState(false);
 	const [targetError, setTargetErrorState] = useState(false);
-	const { alert } = useContext(AlertContext);
+	const { alertRef: alert } = useContext(AlertContext);
 
 	const addLink = async () => {
 		const slugIsValid = slugText !== "";
@@ -35,7 +35,7 @@ const AddLink = () => {
 			return;
 		}
 
-		if (!validator.isURL(targetText)) {
+		if (!validator.isURL(targetText, { require_tld: false })) {
 			setTargetErrorState(true);
 			setTargetErrorTextState("The target must be an url.");
 			return;
@@ -54,13 +54,12 @@ const AddLink = () => {
 		if (response.ok) {
 			setSlugState("");
 			setTargetState("");
+			refresh();
 
-			if (alert && alert.current) {
-				alert.current.open("Added link to database.", "success");
-			}
+			alert?.current?.open("Added link to database.", "success");
 		} else {
-			if (alert && alert.current && response.error) {
-				alert.current.open(response.error, "error");
+			if (response.error) {
+				alert?.current?.open(response.error, "error");
 			}
 		}
 
@@ -69,56 +68,48 @@ const AddLink = () => {
 
 	return (
 		<Fragment>
-			<section id="addLink">
-				<div className="flex items-start">
-					<div className="text-left w-full p-4">
-						<h3
-							className="text-lg font-medium text-gray-900"
-							id="modal-headline"
-						>
-							Add a link
-						</h3>
-						<div className="pt-4">
-							<div className="sm:flex">
-								<div className="flex w-full sm:mr-6">
-									<Input
-										name="Slug"
-										value={slugText}
-										setValueState={setSlugState}
-										error={slugError}
-										setErrorState={setSlugErrorState}
-										errorText={slugErrorText}
-										color="gray"
-										placeholder="example"
-										inline={true}
-										validate={/^[0-9a-zA-Z_-]+$/}
-									>
-										<div className="rounded-md flex items-center pointer-events-none">
-											<span className="text-gray-500">
-												{window.location.host}/
-											</span>
-										</div>
-									</Input>
+			<div className="flex items-start">
+				<div className="text-left w-full p-4">
+					<div className="sm:flex">
+						<div className="flex w-full sm:mr-6">
+							<Input
+								name="Slug"
+								value={slugText}
+								setValueState={setSlugState}
+								error={slugError}
+								setErrorState={setSlugErrorState}
+								errorText={slugErrorText}
+								color="gray"
+								placeholder="example"
+								inline={true}
+								validate={/^[0-9a-zA-Z_-]+$/}
+							>
+								<div className="rounded-md flex items-center pointer-events-none">
+									<span className="text-gray-500">
+										{window.location.host}/
+									</span>
 								</div>
-								<div className="mt-4 sm:mt-0 flex w-full">
-									<Input
-										name="Target"
-										value={targetText}
-										setValueState={setTargetState}
-										error={targetError}
-										setErrorState={setTargetErrorState}
-										errorText={targetErrorText}
-										color="gray"
-										placeholder="https://example.com/"
-										inline={false}
-										validate={/^[!-~]+$/}
-									/>
-								</div>
-							</div>
+							</Input>
+						</div>
+						<div className="mt-4 sm:mt-0 flex w-full">
+							<Input
+								name="Target"
+								value={targetText}
+								setValueState={setTargetState}
+								error={targetError}
+								setErrorState={setTargetErrorState}
+								errorText={targetErrorText}
+								color="gray"
+								placeholder="https://example.com/"
+								inline={false}
+								validate={/^[!-~]+$/}
+							/>
 						</div>
 					</div>
 				</div>
-				<div className="bg-gray-50 p-4 sm:flex">
+			</div>
+			<div className="bg-gray-50 p-4 sm:flex rounded-md">
+				<div className="w-full sm:w-auto flex">
 					<Button
 						text="Add Link"
 						color="green"
@@ -133,11 +124,11 @@ const AddLink = () => {
 						in={adding}
 					>
 						<div className="ml-4 flex-stretch flex flex-col justify-center">
-							<Spinner color="gray-800" />
+							<Spinner color="gray-900" />
 						</div>
 					</CSSTransition>
 				</div>
-			</section>
+			</div>
 		</Fragment>
 	);
 };

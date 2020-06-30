@@ -31,7 +31,7 @@ const validateBody = (
 
 			body.currentSlug = sanitize(body.currentSlug);
 
-			if (!validator.isURL(body.currentSlug)) {
+			if (body.currentSlug === "") {
 				res.status(400).send("Bad request");
 				return;
 			}
@@ -59,7 +59,7 @@ const validateBody = (
 
 			body.target = sanitizeOnlyAscii(body.target);
 
-			if (!validator.isURL(body.target)) {
+			if (!validator.isURL(body.target, { require_tld: false })) {
 				res.status(400).send("Bad request");
 				return;
 			}
@@ -94,6 +94,7 @@ const addLink = validateBody(
 				slug: link.newSlug,
 				target: link.target,
 				clicks: 0,
+				created: Date.now(),
 			});
 
 			if (!operation.result.ok || operation.result.ok !== 1) {
@@ -130,7 +131,7 @@ const editLink = validateBody(
 
 			const operation = await collection.findOneAndUpdate(
 				{ slug: link.currentSlug },
-				{ slug: link.newSlug, target: link.target }
+				{ $set: { slug: link.newSlug, target: link.target } }
 			);
 
 			if (!operation.ok || operation.ok !== 1) {
@@ -140,6 +141,7 @@ const editLink = validateBody(
 
 			res.status(200).send("Ok");
 		} catch (e) {
+			console.log(e);
 			res.status(500).send("Internal error");
 		}
 	},
@@ -180,6 +182,23 @@ const deleteLink = validateBody(
 		checkForCurrentSlug: true,
 	}
 );
+
+const deleteAll = async (req: Request, res: NowResponse, db: Db) => {
+	try {
+		const collection = db.collection("links");
+
+		const { result } = await collection.deleteMany({});
+
+		if (!result.ok || result.ok !== 1) {
+			res.status(500).send("Internal error");
+			return;
+		}
+
+		res.status(200).send("Ok");
+	} catch (e) {
+		res.status(500).send("Internal error");
+	}
+};
 
 export default protect(async (req: Request, res: NowResponse) => {
 	const {
@@ -223,6 +242,10 @@ export default protect(async (req: Request, res: NowResponse) => {
 		}
 		case "delete": {
 			await deleteLink(req, res, db);
+			break;
+		}
+		case "delete-all": {
+			await deleteAll(req, res, db);
 			break;
 		}
 		default: {

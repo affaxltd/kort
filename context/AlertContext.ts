@@ -1,8 +1,8 @@
 import { createContext, RefObject } from "react";
-import Alert from "../components/primitives/Alert";
+import Alert from "../components/custom/Alert";
 
 export type AlertState = {
-	alert?: RefObject<Alert>;
+	alertRef?: RefObject<Alert>;
 };
 
 const initialData: AlertState = {};

@@ -20,19 +20,23 @@ const Input = ({
 	placeholder,
 	color,
 	validate,
+	hideName,
 	inline,
+	small,
 	children,
 }: {
 	name: string;
 	value: string;
-	setValueState: Dispatch<SetStateAction<string>>;
+	setValueState: Dispatch<SetStateAction<string>> | ((str: string) => void);
 	error?: boolean;
 	errorText?: string;
 	setErrorState?: Dispatch<SetStateAction<boolean>>;
-	placeholder: string;
+	placeholder?: string;
 	color: string;
 	validate: RegExp | ValidateFunction;
-	inline: boolean;
+	hideName?: boolean;
+	inline?: boolean;
+	small?: boolean;
 	children?: any;
 }) => {
 	const [focused, setFocusState] = useState(false);
@@ -58,34 +62,41 @@ const Input = ({
 
 	return (
 		<div className="block w-full">
-			<label
-				htmlFor={nameLower}
-				className="block text-base font-medium text-gray-700"
-			>
-				{name}
-			</label>
+			{!hideName && (
+				<label
+					htmlFor={nameLower}
+					className={c(
+						"block font-medium text-gray-700",
+						small ? "text-sm" : "text-base"
+					)}
+				>
+					{name}
+				</label>
+			)}
 			<div
 				className="shadow rounded-md cursor-text"
 				onClick={() => inputRef.current.focus()}
 			>
 				<div
 					className={c(
-						"mt-1 bg-white rounded-md w-full flex outline-none shadow-outline input-focused-normal",
+						"mt-1 bg-white rounded-md w-full flex outline-none shadow-outline input-focused-normal general-transition",
 						focused ? `input-focused-${color}` : "",
 						error ? `input-focused-red` : ""
 					)}
 				>
-					{inline && <div className="pl-3 py-2">{children}</div>}
+					{inline && (
+						<div className={c(small ? "py-1 pl-2" : "py-2 pl-3")}>
+							{children}
+						</div>
+					)}
 					<input
 						id={nameLower}
 						name={nameLower}
 						className={c(
-							"py-2 rounded-md w-full focus:outline-none focus:shadow-none",
-							{
-								"px-3": !inline,
-								"pr-3": inline,
-								"ml-0.5": inline,
-							}
+							"rounded-md w-full focus:outline-none focus:shadow-none",
+							small ? "text-sm py-1 pr-2" : "text-base py-2 pr-3",
+							!inline ? (small ? "pl-2" : "pl-3") : null,
+							inline ? "ml-0.5" : null
 						)}
 						placeholder={placeholder}
 						value={value}

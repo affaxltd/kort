@@ -1,4 +1,5 @@
-import { LinkBody, LinkMutationResponse } from "../../types/_link";
+import { LinkBody, LinkMutationResponse } from "../types/_link";
+import fetch from "unfetch";
 
 export const requestLinkApi = async (
 	body: LinkBody,

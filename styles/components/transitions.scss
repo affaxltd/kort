@@ -1,3 +1,11 @@
+button,
+a,
+span,
+input,
+.general-transition {
+	@apply transition-all ease-in-out duration-150;
+}
+
 .loader-transition-enter {
 	opacity: 0;
 }

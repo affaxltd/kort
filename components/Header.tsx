@@ -1,27 +1,8 @@
-import { useContext, useState, useRef, useEffect } from "react";
-import { MutableRefObject } from "react";
+import { useContext, useState, useRef } from "react";
 import UserContext from "../context/UserContext";
 import Link from "next/link";
 import { CSSTransition } from "react-transition-group";
-
-const useOutsideAlerter = (
-	ref: MutableRefObject<null | any>,
-	callback: () => void
-) => {
-	useEffect(() => {
-		function handleClickOutside(event: Event) {
-			if (ref.current !== null && !ref.current.contains(event.target)) {
-				callback();
-			}
-		}
-
-		document.addEventListener("mousedown", handleClickOutside);
-
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
-	}, [ref]);
-};
+import { useOutsideAlerter } from "../hooks/use-outside-alerter";
 
 const Header = () => {
 	const { user, signOut } = useContext(UserContext);
@@ -68,21 +49,23 @@ const Header = () => {
 						{user.loggedIn && (
 							<div className="ml-3 relative" ref={wrapperRef}>
 								<div>
-									<button
+									<div
 										className="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white"
 										id="user-menu"
 										aria-label="User menu"
 										aria-haspopup="true"
-										onClick={() =>
-											setUserDropdownState(
-												!userDropdownOpen
-											)
-										}
 									>
-										<a className="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+										<a
+											className="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out cursor-pointer"
+											onClick={() =>
+												setUserDropdownState(
+													!userDropdownOpen
+												)
+											}
+										>
 											{user.email}
 										</a>
-									</button>
+									</div>
 								</div>
 								<CSSTransition
 									mountOnEnter

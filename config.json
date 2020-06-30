@@ -1,16 +1,5 @@
 {
 	"base_url": "https://affax.link/",
 	"base_url_dev": "http://localhost:3000/",
-	"site_description": "Customizeable link shortener built on Vercel, Next and MongoDB.",
-	"auth_providers": [
-		{
-			"name": "Github",
-			"oauth_scope": "user",
-			"client_id_env": "GITHUB_CLIENT_ID",
-			"secret_env": "GITHUB_SECRET",
-			"oauth_uri": "https://github.com/login/oauth/",
-			"user_data_uri": "https://api.github.com/user/emails",
-			"email_json_path": "$[?(@.primary==true)].email"
-		}
-	]
+	"site_description": "Customizeable link shortener built on Vercel, Next and MongoDB."
 }

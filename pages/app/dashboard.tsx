@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, Fragment } from "react";
+import { useContext, useEffect, useRef } from "react";
 import UserContext from "../../context/UserContext";
 import Router from "next/router";
 import { NextSeo } from "next-seo";
@@ -23,13 +23,7 @@ const Dashboard = () => {
 		}
 	} catch (e) {}
 
-	const {
-		pages,
-		isLoadingMore,
-		loadMore,
-		isReachingEnd,
-		isEmpty,
-	} = useSWRPages(
+	const { pages, isLoadingMore, loadMore, isReachingEnd } = useSWRPages(
 		"links",
 		({ offset, withSWR }) => {
 			const url = offset || "/api/links";

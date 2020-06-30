@@ -183,7 +183,7 @@ const deleteLink = validateBody(
 	}
 );
 
-const deleteAll = async (req: Request, res: NowResponse, db: Db) => {
+const deleteAll = async (_req: Request, res: NowResponse, db: Db) => {
 	try {
 		const collection = db.collection("links");
 

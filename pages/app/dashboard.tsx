@@ -75,7 +75,7 @@ const Dashboard = () => {
 					</div>
 					<div className="mt-5 bg-white rounded-lg shadow-xl w-full">
 						<div className="flex flex-col">
-							<div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+							<div className="-my-2 py-2 overflow-x-auto">
 								<div className="align-middle inline-block min-w-full overflow-hidden rounded-md">
 									<table className="min-w-full">
 										<thead>

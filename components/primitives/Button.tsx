@@ -72,6 +72,7 @@ const Button = ({
 					border ? "border border-gray-200 border-solid" : null
 				)}
 				onClick={() => {
+					if (disabled) return;
 					if (onClick) onClick();
 				}}
 			>

@@ -71,7 +71,9 @@ const Link = ({ link }: { link: LinkType }) => {
 			<td className="px-6 py-4 whitespace-no-wrap">
 				<div className="text-sm leading-5 text-gray-900">
 					<a target="_blank" href={url}>
-						{link.target}
+						{link.target.length > 50
+							? `${link.target.substr(0, 50)}...`
+							: link.target}
 					</a>
 				</div>
 			</td>

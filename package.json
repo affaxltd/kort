@@ -50,7 +50,7 @@
 		"swr": "^0.2.3",
 		"tailwindcss": "^1.4.6",
 		"tailwindcss-filters": "^3.0.0",
-		"typescript": "^3.9.5",
+		"typescript": "^3.9.6",
 		"unfetch": "^4.1.0",
 		"url": "^0.11.0",
 		"validate": "^5.1.0",

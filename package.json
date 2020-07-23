@@ -7,7 +7,7 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"@popperjs/core": "^2.4.2",
+		"@popperjs/core": "^2.4.3",
 		"@tailwindcss/ui": "^0.3.0",
 		"@tippyjs/react": "^4.0.5",
 		"@vercel/node": "^1.7.1",

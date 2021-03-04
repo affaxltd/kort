@@ -10,7 +10,7 @@
 		"@popperjs/core": "^2.4.2",
 		"@tailwindcss/ui": "^0.3.0",
 		"@tippyjs/react": "^4.0.5",
-		"@vercel/node": "^1.7.1",
+		"@vercel/node": "^1.9.0",
 		"@zeit/next-sass": "^1.0.1",
 		"apollo-server-micro": "^2.15.0",
 		"autoprefixer": "^9.8.2",

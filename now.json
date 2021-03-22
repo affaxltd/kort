@@ -2,8 +2,8 @@
 	"version": 2,
 	"regions": ["sfo1"],
 	"rewrites": [
-		{ "source": "/:link*", "destination": "/api/link/:link*" },
 		{ "source": "/api/:api*", "destination": "/api/:api*" },
+		{ "source": "/:link*", "destination": "/api/link/:link*" },
 		{ "source": "/", "destination": "/app/login" }
 	]
 }

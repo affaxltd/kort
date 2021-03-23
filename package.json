@@ -44,7 +44,7 @@
 		"redux": "^4.0.5",
 		"redux-devtools-extension": "^2.13.8",
 		"remotedev-react-state": "^0.1.0",
-		"sass": "^1.26.9",
+		"sass": "^1.32.7",
 		"sass-loader": "^8.0.2",
 		"style-loader": "^1.2.1",
 		"swr": "^0.2.3",

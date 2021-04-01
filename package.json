@@ -25,7 +25,7 @@
 		"jsonpath": "^1.0.2",
 		"jsonwebtoken": "^8.5.1",
 		"micro": "^9.3.4",
-		"mongoose": "^5.11.7",
+		"mongoose": "^5.12.3",
 		"next": "10.0.7",
 		"next-redux-wrapper": "^6.0.2",
 		"next-seo": "^4.5.0",

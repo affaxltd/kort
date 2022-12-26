@@ -20,13 +20,13 @@
 		"clipboard": "^2.0.6",
 		"concurrently": "^5.2.0",
 		"cookie": "^0.4.1",
-		"css-loader": "^3.6.0",
+		"css-loader": "^4.0.0",
 		"fetcher": "^0.2.0",
 		"jsonpath": "^1.0.2",
 		"jsonwebtoken": "^8.5.1",
 		"micro": "^9.3.4",
 		"mongoose": "^5.11.7",
-		"next": "10.0.7",
+		"next": "12.0.9",
 		"next-redux-wrapper": "^6.0.2",
 		"next-seo": "^4.5.0",
 		"node-sass": "^4.14.1",
@@ -45,7 +45,7 @@
 		"redux-devtools-extension": "^2.13.8",
 		"remotedev-react-state": "^0.1.0",
 		"sass": "^1.26.9",
-		"sass-loader": "^8.0.2",
+		"sass-loader": "^9.0.0",
 		"style-loader": "^1.2.1",
 		"swr": "^0.2.3",
 		"tailwindcss": "^1.4.6",
@@ -56,7 +56,7 @@
 		"validate": "^5.1.0",
 		"validator": "^13.1.1",
 		"validator.js": "^2.0.4",
-		"webpack": "^4.43.0"
+		"webpack": "^5.0.0"
 	},
 	"devDependencies": {
 		"@types/axios": "^0.14.0",
